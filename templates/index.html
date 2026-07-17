@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1739">
+  <meta name="description" content="Checklist organizador para solicitação do Seguro Habitacional MIP.">
+  <title>Jornada MIP • Seguro Habitacional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+
+  <header class="hero">
+    <nav class="topbar">
+      <div class="brand">
+        <span class="brand-icon">✓</span>
+        <span>Jornada MIP</span>
+      </div>
+      <div class="top-actions">
+        <button id="contrastBtn" class="ghost-btn" type="button" aria-label="Alternar alto contraste">◐ Contraste</button>
+        <button id="fontBtn" class="ghost-btn" type="button" aria-label="Aumentar tamanho da fonte">A+ Fonte</button>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div>
+        <span class="eyebrow">SEGURO HABITACIONAL • ORGANIZAÇÃO DOCUMENTAL</span>
+        <h1>Da primeira ligação ao protocolo final.</h1>
+        <p class="hero-text">
+          Um roteiro visual para reunir documentos médicos, contratuais e funcionais
+          para o pedido de análise da cobertura MIP por invalidez permanente.
+        </p>
+        <div class="hero-buttons">
+          <a class="primary-btn" href="#checklist">Começar checklist</a>
+          <button class="secondary-btn" id="printBtn" type="button">Imprimir / Salvar PDF</button>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <span class="card-label">CASO ORGANIZADO</span>
+        <h2>Vera Lúcia Pinheiro de Freitas</h2>
+        <p>Financiamento habitacional com participação segurada.</p>
+        <div class="mini-grid">
+          <div><small>Contrato</small><strong>01/11/2013</strong></div>
+          <div><small>Participação</small><strong>48,95%</strong></div>
+          <div><small>Objetivo</small><strong>Aviso MIP</strong></div>
+          <div><small>Contato indicado</small><strong>0800 274 1000</strong></div>
+        </div>
+        <div class="privacy-note">
+          <strong>Privacidade:</strong> não publique CPF, prontuários, exames ou endereço completo no GitHub.
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="dashboard" aria-label="Progresso do checklist">
+      <div class="progress-card">
+        <div>
+          <span class="section-kicker">PROGRESSO GERAL</span>
+          <h2 id="progressTitle">0% concluído</h2>
+        </div>
+        <div class="ring" id="progressRing" style="--progress: 0">
+          <span id="progressNumber">0%</span>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <article><span>Itens concluídos</span><strong id="doneCount">0</strong></article>
+        <article><span>Itens pendentes</span><strong id="pendingCount">0</strong></article>
+        <article><span>Etapas completas</span><strong id="sectionCount">0</strong></article>
+      </div>
+    </section>
+
+    <section class="timeline-section">
+      <div class="section-heading">
+        <span class="section-kicker">ROTA RECOMENDADA</span>
+        <h2>O caminho em 5 movimentos</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><span>01</span><h3>Abrir o sinistro</h3><p>Obter protocolo, número do sinistro e lista oficial.</p></div>
+        <div class="timeline-item"><span>02</span><h3>Reunir prontuários</h3><p>Cirurgias, infecção, abscesso e Home Care.</p></div>
+        <div class="timeline-item"><span>03</span><h3>Atualizar laudos</h3><p>Ortopedista, neurologista e demais especialistas.</p></div>
+        <div class="timeline-item"><span>04</span><h3>Comprovar limitações</h3><p>Marcha, uso de andador e incapacidade laboral.</p></div>
+        <div class="timeline-item"><span>05</span><h3>Protocolar e acompanhar</h3><p>Guardar comprovantes e responder complementações.</p></div>
+      </div>
+    </section>
+
+    <section id="checklist" class="checklist-section">
+      <div class="section-heading split-heading">
+        <div>
+          <span class="section-kicker">CHECKLIST INTERATIVO</span>
+          <h2>Toda a documentação, organizada por etapa</h2>
+        </div>
+        <div class="filter-box">
+          <label for="filterSelect">Exibir</label>
+          <select id="filterSelect">
+            <option value="all">Todos os itens</option>
+            <option value="pending">Somente pendentes</option>
+            <option value="done">Somente concluídos</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="checklistContainer" class="checklist-grid"></div>
+    </section>
+
+    <section class="notes-section">
+      <div class="section-heading">
+        <span class="section-kicker">ANOTAÇÕES DO CASO</span>
+        <h2>Registre protocolos, datas e pendências</h2>
+      </div>
+      <textarea id="notes" placeholder="Ex.: protocolo da ligação, nome do atendente, data da consulta, documento ainda não localizado..."></textarea>
+      <p class="save-status" id="saveStatus">As informações ficam salvas apenas neste navegador.</p>
+    </section>
+
+    <section class="warning-section">
+      <div class="warning-icon">!</div>
+      <div>
+        <h2>Atenção jurídica e médica</h2>
+        <p>
+          Este aplicativo é um organizador documental. A invalidez não é reconhecida apenas pelo diagnóstico:
+          a seguradora analisará as condições da apólice, a permanência do quadro e a repercussão funcional e laboral.
+          Os médicos devem registrar somente fatos clínicos verdadeiros e comprováveis.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Jornada MIP • Organizador documental privado e sem armazenamento em servidor.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
